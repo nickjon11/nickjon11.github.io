@@ -64,6 +64,9 @@ body {
 
     color: white;
 
+    font-family: inherit;
+    font-size: 13px;
+
     text-align: center;
 
     cursor: default;
@@ -75,7 +78,12 @@ body {
 
 .desktop-icon:hover {
     border: 1px dotted white;
+
     background: rgba(70, 50, 140, 0.35);
+}
+
+.desktop-icon:focus {
+    outline: 1px dotted white;
 }
 
 .desktop-icon-image {
@@ -102,6 +110,8 @@ body {
     min-width: 300px;
     min-height: 200px;
 
+    padding: 3px;
+
     background: #c0c0c0;
 
     border-top: 2px solid #ffffff;
@@ -112,8 +122,6 @@ body {
     box-shadow:
         1px 1px 0 #000000,
         -1px -1px 0 #dfdfdf;
-
-    padding: 3px;
 }
 
 
@@ -170,6 +178,8 @@ body {
 .window-controls {
     display: flex;
 
+    align-items: center;
+
     gap: 2px;
 }
 
@@ -178,6 +188,10 @@ body {
     height: 20px;
 
     padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     background: #c0c0c0;
 
@@ -192,10 +206,18 @@ body {
     font-size: 13px;
     font-weight: bold;
 
-    line-height: 14px;
+    line-height: 1;
 
     cursor: default;
 }
+
+
+/* Raise the minimize symbol */
+
+.minimize-button {
+    padding-bottom: 5px !important;
+}
+
 
 .window-controls button:active {
     border-top: 2px solid #404040;
@@ -253,6 +275,8 @@ body {
     background: transparent;
 
     color: #333;
+
+    font-family: inherit;
 
     cursor: default;
 }
@@ -374,6 +398,8 @@ body {
 
     background: transparent;
 
+    font-family: inherit;
+
     text-align: center;
 
     cursor: default;
@@ -381,6 +407,7 @@ body {
 
 .file-icon:hover {
     border: 1px dotted #000080;
+
     background: #e8e0ff;
 }
 
@@ -440,11 +467,78 @@ body {
 
 
 /* =========================================================
+   RESUME WINDOW
+========================================================= */
+
+.resume-window {
+    width: 800px;
+    height: 650px;
+
+    min-width: 450px;
+    min-height: 350px;
+}
+
+
+/* Resume toolbar */
+
+.resume-toolbar {
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 4px;
+
+    background: #c0c0c0;
+
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid #808080;
+}
+
+
+/* Download button */
+
+.resume-toolbar .classic-button {
+    padding: 5px 10px;
+
+    text-decoration: none;
+}
+
+
+/* PDF area */
+
+.resume-viewer {
+    width: 100%;
+    height: calc(100% - 72px);
+
+    background: #808080;
+
+    border-top: 2px solid #404040;
+    border-left: 2px solid #404040;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+}
+
+.resume-viewer iframe {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    border: 0;
+
+    background: white;
+}
+
+
+/* =========================================================
    CLASSIC BUTTON
 ========================================================= */
 
 .classic-button {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
     min-width: 75px;
 
@@ -460,10 +554,15 @@ body {
     color: black;
 
     font-family: inherit;
+    font-size: 13px;
 
     text-decoration: none;
 
     cursor: default;
+}
+
+.classic-button:visited {
+    color: black;
 }
 
 .classic-button:active {
@@ -523,6 +622,7 @@ body {
     left: 7px;
 
     writing-mode: vertical-rl;
+
     transform: rotate(180deg);
 }
 
@@ -568,6 +668,15 @@ body {
 
 .start-item:hover {
     background: #663399;
+
+    color: white;
+}
+
+.start-item:visited {
+    color: black;
+}
+
+.start-item:hover:visited {
     color: white;
 }
 
@@ -623,6 +732,8 @@ body {
     border-right: 2px solid #404040;
     border-bottom: 2px solid #404040;
 
+    color: black;
+
     font-family: inherit;
     font-size: 14px;
 
@@ -677,6 +788,8 @@ body {
     border-right: 2px solid #404040;
     border-bottom: 2px solid #404040;
 
+    color: black;
+
     font-family: inherit;
 
     text-align: left;
@@ -719,6 +832,8 @@ body {
     border-left: 2px solid #808080;
     border-right: 2px solid white;
     border-bottom: 2px solid white;
+
+    color: black;
 
     white-space: nowrap;
 }
@@ -779,6 +894,13 @@ body {
 }
 
 
+/* Resume fills available space when maximized */
+
+.resume-window.maximized .resume-viewer {
+    height: calc(100% - 72px);
+}
+
+
 /* =========================================================
    MOBILE / SMALL SCREEN
 ========================================================= */
@@ -790,6 +912,15 @@ body {
         height: 65vh;
 
         left: 5vw !important;
+    }
+
+    .resume-window {
+        width: 94vw;
+        height: 75vh;
+
+        left: 3vw !important;
+
+        min-width: 0;
     }
 
     .taskbar-window-button {

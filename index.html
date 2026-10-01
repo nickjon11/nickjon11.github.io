@@ -7,7 +7,7 @@
 
     <title>Jonathan Lachman</title>
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2">
 </head>
 
 <body>
@@ -187,10 +187,10 @@
              RESUME WINDOW
         =================================================== -->
 
-        <section class="window"
+        <section class="window resume-window"
                  id="resume-window"
                  data-title="Resume"
-                 style="top: 110px; left: 220px;">
+                 style="top: 60px; left: 180px;">
 
             <div class="window-titlebar">
 
@@ -200,43 +200,41 @@
                 </div>
 
                 <div class="window-controls">
-                    <button class="minimize-button">_</button>
-                    <button class="maximize-button">□</button>
-                    <button class="close-button">×</button>
+                    <button class="minimize-button"
+                            aria-label="Minimize">_</button>
+
+                    <button class="maximize-button"
+                            aria-label="Maximize">□</button>
+
+                    <button class="close-button"
+                            aria-label="Close">×</button>
                 </div>
 
             </div>
 
-            <div class="window-menu">
-                <span>File</span>
-                <span>Edit</span>
-                <span>View</span>
-                <span>Help</span>
-            </div>
 
-            <div class="window-content">
+            <!-- Resume Toolbar -->
 
-                <h1>Resume</h1>
+            <div class="resume-toolbar">
 
-                <p>
-                    My resume contains information about my education,
-                    technical skills, projects, and professional experience.
-                </p>
-
-                <!--
-                Later, put resume.pdf in the website folder and use:
-
-                <a class="classic-button"
-                   href="resume.pdf"
-                   target="_blank">
-                    Open Resume
+                <a href="Jonathan Lachman Resume.pdf"
+                   download
+                   class="classic-button">
+                    💾 Download Resume
                 </a>
-                -->
 
             </div>
 
-            <div class="status-bar">
-                Resume
+
+            <!-- PDF Viewer -->
+
+            <div class="resume-viewer">
+
+                <iframe
+                    src="Jonathan Lachman Resume.pdf"
+                    title="Jonathan Lachman Resume">
+                </iframe>
+
             </div>
 
         </section>
@@ -259,9 +257,14 @@
                 </div>
 
                 <div class="window-controls">
-                    <button class="minimize-button">_</button>
-                    <button class="maximize-button">□</button>
-                    <button class="close-button">×</button>
+                    <button class="minimize-button"
+                            aria-label="Minimize">_</button>
+
+                    <button class="maximize-button"
+                            aria-label="Maximize">□</button>
+
+                    <button class="close-button"
+                            aria-label="Close">×</button>
                 </div>
 
             </div>
@@ -271,15 +274,15 @@
                 <h2>File Server</h2>
 
                 <p>
-                    A secure file-transfer server project designed for a
-                    small organization.
+                    A secure file-transfer server project designed
+                    for a small organization.
                 </p>
 
                 <h3>Project Focus</h3>
 
                 <p>
-                    Encryption, user permissions, backups, monitoring,
-                    documentation, and logging.
+                    Encryption, user permissions, backups,
+                    monitoring, documentation, and logging.
                 </p>
 
             </div>
@@ -308,9 +311,14 @@
                 </div>
 
                 <div class="window-controls">
-                    <button class="minimize-button">_</button>
-                    <button class="maximize-button">□</button>
-                    <button class="close-button">×</button>
+                    <button class="minimize-button"
+                            aria-label="Minimize">_</button>
+
+                    <button class="maximize-button"
+                            aria-label="Maximize">□</button>
+
+                    <button class="close-button"
+                            aria-label="Close">×</button>
                 </div>
 
             </div>
@@ -320,14 +328,15 @@
                 <h2>FastAPI Calculator</h2>
 
                 <p>
-                    A Python calculator application developed using FastAPI.
+                    A Python calculator application developed
+                    using FastAPI.
                 </p>
 
                 <h3>Technologies</h3>
 
                 <p>
-                    Python, FastAPI, PostgreSQL, Docker, pytest,
-                    and GitHub Actions.
+                    Python, FastAPI, PostgreSQL, Docker,
+                    pytest, and GitHub Actions.
                 </p>
 
             </div>
@@ -356,9 +365,14 @@
                 </div>
 
                 <div class="window-controls">
-                    <button class="minimize-button">_</button>
-                    <button class="maximize-button">□</button>
-                    <button class="close-button">×</button>
+                    <button class="minimize-button"
+                            aria-label="Minimize">_</button>
+
+                    <button class="maximize-button"
+                            aria-label="Maximize">□</button>
+
+                    <button class="close-button"
+                            aria-label="Close">×</button>
                 </div>
 
             </div>
@@ -368,7 +382,8 @@
                 <h2>AI TaxBot</h2>
 
                 <p>
-                    An AI-based tax assistant project developed using Python.
+                    An AI-based tax assistant project
+                    developed using Python.
                 </p>
 
                 <h3>Project Repository</h3>
@@ -406,7 +421,8 @@
                 </div>
 
                 <div class="window-controls">
-                    <button class="close-button">×</button>
+                    <button class="close-button"
+                            aria-label="Close">×</button>
                 </div>
 
             </div>
@@ -449,7 +465,8 @@
                 </div>
 
                 <div class="window-controls">
-                    <button class="close-button">×</button>
+                    <button class="close-button"
+                            aria-label="Close">×</button>
                 </div>
 
             </div>
@@ -458,11 +475,13 @@
 
                 <h2>Website Help</h2>
 
-                <p>Welcome to Jonathan's portfolio.</p>
+                <p>
+                    Welcome to Jonathan's portfolio.
+                </p>
 
                 <p>
-                    Double-click desktop icons and project folders
-                    to open them.
+                    Double-click desktop icons and project
+                    folders to open them.
                 </p>
 
                 <p>
@@ -475,7 +494,8 @@
                 </p>
 
                 <p>
-                    Minimized windows can be restored from the taskbar.
+                    Minimized windows can be restored
+                    from the taskbar.
                 </p>
 
                 <button class="classic-button close-help">
@@ -503,7 +523,8 @@
                 </div>
 
                 <div class="window-controls">
-                    <button class="close-button">×</button>
+                    <button class="close-button"
+                            aria-label="Close">×</button>
                 </div>
 
             </div>
@@ -511,26 +532,39 @@
             <div class="window-content restart-content">
 
                 <div class="restart-message">
-                    <span class="restart-icon">🔄</span>
+
+                    <span class="restart-icon">
+                        🔄
+                    </span>
 
                     <div>
-                        <strong>Restart Website?</strong>
+
+                        <strong>
+                            Restart Website?
+                        </strong>
 
                         <p>
-                            This will close all open windows and return
-                            the desktop to its default state.
+                            This will close all open windows
+                            and return the desktop to its
+                            default state.
                         </p>
+
                     </div>
+
                 </div>
 
                 <div class="dialog-buttons">
-                    <button id="restart-yes" class="classic-button">
+
+                    <button id="restart-yes"
+                            class="classic-button">
                         Yes
                     </button>
 
-                    <button id="restart-no" class="classic-button">
+                    <button id="restart-no"
+                            class="classic-button">
                         No
                     </button>
+
                 </div>
 
             </div>
@@ -555,28 +589,36 @@
             <a href="https://github.com/nickjon11"
                target="_blank"
                class="start-item">
+
                 <span>🌐</span>
                 GitHub
+
             </a>
 
             <button class="start-item"
                     data-window="contact-window">
+
                 <span>✉️</span>
                 Contact
+
             </button>
 
             <button class="start-item"
                     data-window="help-window">
+
                 <span>❓</span>
                 Help
+
             </button>
 
             <div class="start-divider"></div>
 
             <button class="start-item"
                     data-window="restart-window">
+
                 <span>🔄</span>
                 Restart Website...
+
             </button>
 
         </div>
@@ -590,9 +632,12 @@
 
     <footer class="taskbar">
 
-        <button id="start-button" class="start-button">
+        <button id="start-button"
+                class="start-button">
+
             <span>🪟</span>
             <strong>Start</strong>
+
         </button>
 
         <div class="taskbar-divider"></div>
@@ -602,14 +647,16 @@
         </div>
 
         <div class="system-tray">
+
             <span>🔊</span>
             <span id="clock">--:--</span>
+
         </div>
 
     </footer>
 
 
-    <script src="script.js"></script>
+    <script src="script.js?v=2"></script>
 
 </body>
 
