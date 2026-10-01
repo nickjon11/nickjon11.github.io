@@ -7,14 +7,14 @@
 
     <title>Jonathan Lachman</title>
 
-    <link rel="stylesheet" href="styles.css?v=2">
+    <link rel="stylesheet" href="styles.css?v=3">
 </head>
 
 <body>
 
-    <!-- ======================================================
+    <!-- =====================================================
          DESKTOP
-    ======================================================= -->
+    ====================================================== -->
 
     <main id="desktop" class="desktop">
 
@@ -42,11 +42,11 @@
         </button>
 
 
-        <!-- ==================================================
-             ABOUT ME WINDOW
-        =================================================== -->
+        <!-- =================================================
+             ABOUT ME
+        ================================================== -->
 
-        <section class="window"
+        <section class="window explorer-window"
                  id="about-window"
                  data-title="About Me"
                  style="top: 90px; left: 150px;">
@@ -59,30 +59,129 @@
                 </div>
 
                 <div class="window-controls">
-                    <button class="minimize-button" aria-label="Minimize">_</button>
-                    <button class="maximize-button" aria-label="Maximize">□</button>
-                    <button class="close-button" aria-label="Close">×</button>
+                    <button class="minimize-button"
+                            aria-label="Minimize">_</button>
+
+                    <button class="maximize-button"
+                            aria-label="Maximize">□</button>
+
+                    <button class="close-button"
+                            aria-label="Close">×</button>
                 </div>
 
             </div>
 
+
+            <!-- Classic Menu -->
+
             <div class="window-menu">
-                <span>File</span>
-                <span>Edit</span>
-                <span>View</span>
-                <span>Help</span>
+
+                <!-- FILE -->
+
+                <div class="menu-group">
+
+                    <button class="menu-button">
+                        File
+                    </button>
+
+                    <div class="dropdown-menu">
+
+                        <button class="menu-close-window">
+                            <span class="menu-check"></span>
+                            Close
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EDIT -->
+
+                <div class="menu-group">
+
+                    <button class="menu-button">
+                        Edit
+                    </button>
+
+                    <div class="dropdown-menu">
+
+                        <button class="theme-light">
+                            <span class="menu-check light-check">●</span>
+                            Light Mode
+                        </button>
+
+                        <button class="theme-dark">
+                            <span class="menu-check dark-check"></span>
+                            Dark Mode
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- VIEW -->
+
+                <div class="menu-group">
+
+                    <button class="menu-button">
+                        View
+                    </button>
+
+                    <div class="dropdown-menu">
+
+                        <button class="view-large">
+                            <span class="menu-check large-check">●</span>
+                            Large Icons
+                        </button>
+
+                        <button class="view-small">
+                            <span class="menu-check small-check"></span>
+                            Small Icons
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HELP -->
+
+                <div class="menu-group">
+
+                    <button class="menu-button">
+                        Help
+                    </button>
+
+                    <div class="dropdown-menu">
+
+                        <button class="menu-open-help">
+                            <span class="menu-check"></span>
+                            Help
+                        </button>
+
+                    </div>
+
+                </div>
+
             </div>
 
-            <div class="window-toolbar">
-                <button>← Back</button>
-                <button>→ Forward</button>
-                <button>↑ Up</button>
-            </div>
+
+            <!-- Address Bar -->
 
             <div class="address-bar">
+
                 <span>Address</span>
-                <div>🖥️ Jonathan's Computer\About Me</div>
+
+                <div>
+                    🖥️ Jonathan's Computer\About Me
+                </div>
+
             </div>
+
+
+            <!-- Content -->
 
             <div class="window-content">
 
@@ -104,6 +203,7 @@
 
             </div>
 
+
             <div class="status-bar">
                 About Jonathan Lachman
             </div>
@@ -111,11 +211,11 @@
         </section>
 
 
-        <!-- ==================================================
-             PROJECTS WINDOW
-        =================================================== -->
+        <!-- =================================================
+             PROJECTS
+        ================================================== -->
 
-        <section class="window"
+        <section class="window explorer-window"
                  id="projects-window"
                  data-title="Projects"
                  style="top: 130px; left: 300px;">
@@ -128,53 +228,160 @@
                 </div>
 
                 <div class="window-controls">
-                    <button class="minimize-button" aria-label="Minimize">_</button>
-                    <button class="maximize-button" aria-label="Maximize">□</button>
-                    <button class="close-button" aria-label="Close">×</button>
+
+                    <button class="minimize-button"
+                            aria-label="Minimize">_</button>
+
+                    <button class="maximize-button"
+                            aria-label="Maximize">□</button>
+
+                    <button class="close-button"
+                            aria-label="Close">×</button>
+
                 </div>
 
             </div>
 
+
+            <!-- Classic Menu -->
+
             <div class="window-menu">
-                <span>File</span>
-                <span>Edit</span>
-                <span>View</span>
-                <span>Favorites</span>
-                <span>Help</span>
+
+                <!-- FILE -->
+
+                <div class="menu-group">
+
+                    <button class="menu-button">
+                        File
+                    </button>
+
+                    <div class="dropdown-menu">
+
+                        <button class="menu-close-window">
+                            <span class="menu-check"></span>
+                            Close
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EDIT -->
+
+                <div class="menu-group">
+
+                    <button class="menu-button">
+                        Edit
+                    </button>
+
+                    <div class="dropdown-menu">
+
+                        <button class="theme-light">
+                            <span class="menu-check light-check">●</span>
+                            Light Mode
+                        </button>
+
+                        <button class="theme-dark">
+                            <span class="menu-check dark-check"></span>
+                            Dark Mode
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- VIEW -->
+
+                <div class="menu-group">
+
+                    <button class="menu-button">
+                        View
+                    </button>
+
+                    <div class="dropdown-menu">
+
+                        <button class="view-large">
+                            <span class="menu-check large-check">●</span>
+                            Large Icons
+                        </button>
+
+                        <button class="view-small">
+                            <span class="menu-check small-check"></span>
+                            Small Icons
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HELP -->
+
+                <div class="menu-group">
+
+                    <button class="menu-button">
+                        Help
+                    </button>
+
+                    <div class="dropdown-menu">
+
+                        <button class="menu-open-help">
+                            <span class="menu-check"></span>
+                            Help
+                        </button>
+
+                    </div>
+
+                </div>
+
             </div>
 
-            <div class="window-toolbar">
-                <button>← Back</button>
-                <button>→ Forward</button>
-                <button>↑ Up</button>
-            </div>
+
+            <!-- Address -->
 
             <div class="address-bar">
+
                 <span>Address</span>
-                <div>📁 Jonathan's Computer\Projects</div>
+
+                <div>
+                    📁 Jonathan's Computer\Projects
+                </div>
+
             </div>
 
-            <div class="window-content explorer-content">
+
+            <!-- Project Icons -->
+
+            <div class="window-content explorer-content large-icons">
 
                 <button class="file-icon"
                         data-window="fileserver-window">
+
                     <span>📁</span>
                     <span>File Server</span>
+
                 </button>
 
                 <button class="file-icon"
                         data-window="fastapi-window">
+
                     <span>📁</span>
                     <span>FastAPI Calculator</span>
+
                 </button>
 
                 <button class="file-icon"
                         data-window="taxbot-window">
+
                     <span>📁</span>
                     <span>AI TaxBot</span>
+
                 </button>
 
             </div>
+
 
             <div class="status-bar">
                 3 object(s)
@@ -183,9 +390,9 @@
         </section>
 
 
-        <!-- ==================================================
-             RESUME WINDOW
-        =================================================== -->
+        <!-- =================================================
+             RESUME
+        ================================================== -->
 
         <section class="window resume-window"
                  id="resume-window"
@@ -200,6 +407,7 @@
                 </div>
 
                 <div class="window-controls">
+
                     <button class="minimize-button"
                             aria-label="Minimize">_</button>
 
@@ -208,25 +416,28 @@
 
                     <button class="close-button"
                             aria-label="Close">×</button>
+
                 </div>
 
             </div>
 
 
-            <!-- Resume Toolbar -->
+            <!-- Download Toolbar -->
 
             <div class="resume-toolbar">
 
                 <a href="Jonathan Lachman Resume.pdf"
                    download
                    class="classic-button">
+
                     💾 Download Resume
+
                 </a>
 
             </div>
 
 
-            <!-- PDF Viewer -->
+            <!-- Embedded PDF -->
 
             <div class="resume-viewer">
 
@@ -240,9 +451,9 @@
         </section>
 
 
-        <!-- ==================================================
-             FILE SERVER PROJECT
-        =================================================== -->
+        <!-- =================================================
+             FILE SERVER
+        ================================================== -->
 
         <section class="window project-window"
                  id="fileserver-window"
@@ -257,6 +468,7 @@
                 </div>
 
                 <div class="window-controls">
+
                     <button class="minimize-button"
                             aria-label="Minimize">_</button>
 
@@ -265,9 +477,11 @@
 
                     <button class="close-button"
                             aria-label="Close">×</button>
+
                 </div>
 
             </div>
+
 
             <div class="window-content">
 
@@ -287,6 +501,7 @@
 
             </div>
 
+
             <div class="status-bar">
                 Project Information
             </div>
@@ -294,9 +509,9 @@
         </section>
 
 
-        <!-- ==================================================
-             FASTAPI PROJECT
-        =================================================== -->
+        <!-- =================================================
+             FASTAPI CALCULATOR
+        ================================================== -->
 
         <section class="window project-window"
                  id="fastapi-window"
@@ -311,6 +526,7 @@
                 </div>
 
                 <div class="window-controls">
+
                     <button class="minimize-button"
                             aria-label="Minimize">_</button>
 
@@ -319,9 +535,11 @@
 
                     <button class="close-button"
                             aria-label="Close">×</button>
+
                 </div>
 
             </div>
+
 
             <div class="window-content">
 
@@ -341,6 +559,7 @@
 
             </div>
 
+
             <div class="status-bar">
                 Project Information
             </div>
@@ -348,9 +567,9 @@
         </section>
 
 
-        <!-- ==================================================
-             AI TAXBOT PROJECT
-        =================================================== -->
+        <!-- =================================================
+             AI TAXBOT
+        ================================================== -->
 
         <section class="window project-window"
                  id="taxbot-window"
@@ -365,6 +584,7 @@
                 </div>
 
                 <div class="window-controls">
+
                     <button class="minimize-button"
                             aria-label="Minimize">_</button>
 
@@ -373,9 +593,11 @@
 
                     <button class="close-button"
                             aria-label="Close">×</button>
+
                 </div>
 
             </div>
+
 
             <div class="window-content">
 
@@ -391,11 +613,14 @@
                 <p>
                     <a href="https://github.com/nickjon11/AI-TaxBot"
                        target="_blank">
+
                         Open AI TaxBot on GitHub
+
                     </a>
                 </p>
 
             </div>
+
 
             <div class="status-bar">
                 Project Information
@@ -404,9 +629,9 @@
         </section>
 
 
-        <!-- ==================================================
-             CONTACT WINDOW
-        =================================================== -->
+        <!-- =================================================
+             CONTACT
+        ================================================== -->
 
         <section class="window small-window"
                  id="contact-window"
@@ -421,11 +646,14 @@
                 </div>
 
                 <div class="window-controls">
+
                     <button class="close-button"
                             aria-label="Close">×</button>
+
                 </div>
 
             </div>
+
 
             <div class="window-content">
 
@@ -448,9 +676,9 @@
         </section>
 
 
-        <!-- ==================================================
-             HELP WINDOW
-        =================================================== -->
+        <!-- =================================================
+             HELP
+        ================================================== -->
 
         <section class="window small-window"
                  id="help-window"
@@ -465,11 +693,14 @@
                 </div>
 
                 <div class="window-controls">
+
                     <button class="close-button"
                             aria-label="Close">×</button>
+
                 </div>
 
             </div>
+
 
             <div class="window-content">
 
@@ -480,8 +711,8 @@
                 </p>
 
                 <p>
-                    Double-click desktop icons and project
-                    folders to open them.
+                    Double-click desktop icons and project folders
+                    to open them.
                 </p>
 
                 <p>
@@ -507,9 +738,9 @@
         </section>
 
 
-        <!-- ==================================================
-             RESTART CONFIRMATION
-        =================================================== -->
+        <!-- =================================================
+             RESTART
+        ================================================== -->
 
         <section class="window dialog-window"
                  id="restart-window"
@@ -523,11 +754,14 @@
                 </div>
 
                 <div class="window-controls">
+
                     <button class="close-button"
                             aria-label="Close">×</button>
+
                 </div>
 
             </div>
+
 
             <div class="window-content restart-content">
 
@@ -545,13 +779,13 @@
 
                         <p>
                             This will close all open windows
-                            and return the desktop to its
-                            default state.
+                            and return the desktop to its default state.
                         </p>
 
                     </div>
 
                 </div>
+
 
                 <div class="dialog-buttons">
 
@@ -574,15 +808,21 @@
     </main>
 
 
-    <!-- ======================================================
+    <!-- =====================================================
          START MENU
-    ======================================================= -->
+    ====================================================== -->
 
-    <div id="start-menu" class="start-menu">
+    <div id="start-menu"
+         class="start-menu">
 
         <div class="start-sidebar">
-            <span>Jonathan Lachman</span>
+
+            <span>
+                Jonathan Lachman
+            </span>
+
         </div>
+
 
         <div class="start-options">
 
@@ -595,6 +835,7 @@
 
             </a>
 
+
             <button class="start-item"
                     data-window="contact-window">
 
@@ -602,6 +843,7 @@
                 Contact
 
             </button>
+
 
             <button class="start-item"
                     data-window="help-window">
@@ -611,7 +853,9 @@
 
             </button>
 
+
             <div class="start-divider"></div>
+
 
             <button class="start-item"
                     data-window="restart-window">
@@ -626,9 +870,9 @@
     </div>
 
 
-    <!-- ======================================================
+    <!-- =====================================================
          TASKBAR
-    ======================================================= -->
+    ====================================================== -->
 
     <footer class="taskbar">
 
@@ -640,23 +884,29 @@
 
         </button>
 
+
         <div class="taskbar-divider"></div>
+
 
         <div id="taskbar-programs"
              class="taskbar-programs">
         </div>
 
+
         <div class="system-tray">
 
             <span>🔊</span>
-            <span id="clock">--:--</span>
+
+            <span id="clock">
+                --:--
+            </span>
 
         </div>
 
     </footer>
 
 
-    <script src="script.js?v=2"></script>
+    <script src="script.js?v=3"></script>
 
 </body>
 

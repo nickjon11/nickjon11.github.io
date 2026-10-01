@@ -125,22 +125,6 @@ body {
 }
 
 
-/* Active window */
-
-.window.active .window-titlebar {
-    background: #663399;
-    color: white;
-}
-
-
-/* Inactive window */
-
-.window:not(.active) .window-titlebar {
-    background: #808080;
-    color: #dcdcdc;
-}
-
-
 /* =========================================================
    TITLE BAR
 ========================================================= */
@@ -158,6 +142,23 @@ body {
 
     cursor: move;
 }
+
+
+/* Active */
+
+.window.active .window-titlebar {
+    background: #663399;
+    color: white;
+}
+
+
+/* Inactive */
+
+.window:not(.active) .window-titlebar {
+    background: #808080;
+    color: #dcdcdc;
+}
+
 
 .window-title {
     display: flex;
@@ -177,7 +178,6 @@ body {
 
 .window-controls {
     display: flex;
-
     align-items: center;
 
     gap: 2px;
@@ -212,7 +212,7 @@ body {
 }
 
 
-/* Raise the minimize symbol */
+/* Raise _ */
 
 .minimize-button {
     padding-bottom: 5px !important;
@@ -222,70 +222,146 @@ body {
 .window-controls button:active {
     border-top: 2px solid #404040;
     border-left: 2px solid #404040;
-    border-right: 2px solid #ffffff;
-    border-bottom: 2px solid #ffffff;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
 }
 
 
 /* =========================================================
-   WINDOW MENU
+   CLASSIC MENU BAR
 ========================================================= */
 
 .window-menu {
+    position: relative;
+
     height: 25px;
 
     display: flex;
     align-items: center;
 
-    gap: 18px;
+    gap: 2px;
 
-    padding: 0 8px;
+    padding: 0 4px;
 
-    color: #222;
+    background: #c0c0c0;
+
+    overflow: visible;
+
+    user-select: none;
 }
 
-.window-menu span::first-letter {
-    text-decoration: underline;
+
+.menu-group {
+    position: relative;
 }
 
 
-/* =========================================================
-   TOOLBAR
-========================================================= */
+.menu-button {
+    height: 23px;
 
-.window-toolbar {
-    min-height: 46px;
-
-    display: flex;
-    align-items: center;
-
-    gap: 5px;
-
-    padding: 5px;
-
-    border-top: 1px solid #808080;
-    border-bottom: 1px solid #808080;
-}
-
-.window-toolbar button {
-    padding: 5px 10px;
+    padding: 2px 8px;
 
     border: 1px solid transparent;
 
     background: transparent;
 
-    color: #333;
+    color: black;
 
     font-family: inherit;
+    font-size: 13px;
 
     cursor: default;
 }
 
-.window-toolbar button:hover {
+
+.menu-button::first-letter {
+    text-decoration: underline;
+}
+
+
+.menu-button:hover,
+.menu-group.open > .menu-button {
     border-top: 1px solid white;
     border-left: 1px solid white;
-    border-right: 1px solid #808080;
-    border-bottom: 1px solid #808080;
+    border-right: 1px solid #404040;
+    border-bottom: 1px solid #404040;
+}
+
+
+/* =========================================================
+   DROPDOWN MENUS
+========================================================= */
+
+.dropdown-menu {
+    position: absolute;
+
+    top: 23px;
+    left: 0;
+
+    display: none;
+
+    min-width: 155px;
+
+    padding: 3px;
+
+    background: #c0c0c0;
+
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    border-right: 2px solid #404040;
+    border-bottom: 2px solid #404040;
+
+    box-shadow: 1px 1px 0 black;
+
+    z-index: 30000;
+}
+
+
+.menu-group.open .dropdown-menu {
+    display: block;
+}
+
+
+.dropdown-menu button {
+    width: 100%;
+    height: 25px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 2px 8px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: black;
+
+    font-family: inherit;
+    font-size: 13px;
+
+    text-align: left;
+
+    cursor: default;
+}
+
+
+.dropdown-menu button:hover {
+    background: #663399;
+    color: white;
+}
+
+
+.menu-check {
+    display: inline-block;
+
+    width: 18px;
+
+    margin-right: 4px;
+
+    font-size: 10px;
+
+    text-align: center;
 }
 
 
@@ -303,12 +379,17 @@ body {
 
     padding: 3px;
 
+    background: #c0c0c0;
+
+    border-top: 1px solid #808080;
     border-bottom: 1px solid #808080;
 }
+
 
 .address-bar > span {
     padding: 0 4px;
 }
+
 
 .address-bar div {
     flex: 1;
@@ -318,6 +399,8 @@ body {
     padding: 2px 5px;
 
     background: white;
+
+    color: black;
 
     border-top: 2px solid #404040;
     border-left: 2px solid #404040;
@@ -335,13 +418,13 @@ body {
 ========================================================= */
 
 .window-content {
-    height: calc(100% - 134px);
-
     padding: 18px;
 
     overflow: auto;
 
     background: white;
+
+    color: black;
 
     border-top: 2px solid #404040;
     border-left: 2px solid #404040;
@@ -351,23 +434,44 @@ body {
     user-select: text;
 }
 
+
+/*
+Explorer windows have:
+26px title
+25px menu
+30px address
+23px status
+plus borders/padding.
+
+This fills the remaining area without the old toolbar.
+*/
+
+.explorer-window .window-content {
+    height: calc(100% - 107px);
+}
+
+
 .window-content h1 {
     margin-top: 0;
 
     font-size: 28px;
 }
 
+
 .window-content h2 {
     margin-top: 0;
 }
+
 
 .window-content p {
     line-height: 1.5;
 }
 
+
 .window-content a {
     color: #0000ee;
 }
+
 
 .window-content a:visited {
     color: #551a8b;
@@ -375,48 +479,98 @@ body {
 
 
 /* =========================================================
-   EXPLORER PROJECT ICONS
+   EXPLORER ICONS - LARGE
 ========================================================= */
 
-.explorer-content {
+.explorer-content.large-icons {
     display: flex;
-    align-content: flex-start;
     flex-wrap: wrap;
+    align-content: flex-start;
 
     gap: 25px;
-
-    user-select: none;
 }
 
-.file-icon {
+
+.explorer-content.large-icons .file-icon {
     width: 110px;
     height: 90px;
 
     padding: 8px;
 
-    border: 1px solid transparent;
-
-    background: transparent;
-
-    font-family: inherit;
-
     text-align: center;
-
-    cursor: default;
 }
 
-.file-icon:hover {
-    border: 1px dotted #000080;
 
-    background: #e8e0ff;
-}
-
-.file-icon span:first-child {
+.explorer-content.large-icons .file-icon span:first-child {
     display: block;
 
     margin-bottom: 6px;
 
     font-size: 38px;
+}
+
+
+/* =========================================================
+   EXPLORER ICONS - SMALL
+========================================================= */
+
+.explorer-content.small-icons {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(190px, 1fr));
+
+    align-content: start;
+
+    gap: 3px 12px;
+}
+
+
+.explorer-content.small-icons .file-icon {
+    width: 100%;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 2px 5px;
+
+    text-align: left;
+}
+
+
+.explorer-content.small-icons .file-icon span:first-child {
+    display: inline-block;
+
+    margin: 0;
+
+    font-size: 20px;
+}
+
+
+/* =========================================================
+   FILE ICON BASE
+========================================================= */
+
+.file-icon {
+    border: 1px solid transparent;
+
+    background: transparent;
+
+    color: black;
+
+    font-family: inherit;
+
+    cursor: default;
+}
+
+
+.file-icon:hover {
+    border: 1px dotted #000080;
+
+    background: #e8e0ff;
 }
 
 
@@ -430,6 +584,10 @@ body {
     margin-top: 3px;
 
     padding: 3px 6px;
+
+    background: #c0c0c0;
+
+    color: black;
 
     border-top: 2px solid #808080;
     border-left: 2px solid #808080;
@@ -447,6 +605,7 @@ body {
     height: 340px;
 }
 
+
 .project-window .window-content {
     height: calc(100% - 55px);
 }
@@ -460,6 +619,7 @@ body {
     width: 420px;
     height: 310px;
 }
+
 
 .small-window .window-content {
     height: calc(100% - 30px);
@@ -479,8 +639,6 @@ body {
 }
 
 
-/* Resume toolbar */
-
 .resume-toolbar {
     height: 42px;
 
@@ -491,12 +649,10 @@ body {
 
     background: #c0c0c0;
 
-    border-top: 1px solid #ffffff;
+    border-top: 1px solid white;
     border-bottom: 1px solid #808080;
 }
 
-
-/* Download button */
 
 .resume-toolbar .classic-button {
     padding: 5px 10px;
@@ -504,8 +660,6 @@ body {
     text-decoration: none;
 }
 
-
-/* PDF area */
 
 .resume-viewer {
     width: 100%;
@@ -518,6 +672,7 @@ body {
     border-right: 2px solid white;
     border-bottom: 2px solid white;
 }
+
 
 .resume-viewer iframe {
     display: block;
@@ -561,9 +716,11 @@ body {
     cursor: default;
 }
 
+
 .classic-button:visited {
     color: black;
 }
+
 
 .classic-button:active {
     border-top: 2px solid #404040;
@@ -598,9 +755,11 @@ body {
     z-index: 20000;
 }
 
+
 .start-menu.open {
     display: flex;
 }
+
 
 .start-sidebar {
     position: relative;
@@ -615,6 +774,7 @@ body {
     font-weight: bold;
 }
 
+
 .start-sidebar span {
     position: absolute;
 
@@ -626,11 +786,13 @@ body {
     transform: rotate(180deg);
 }
 
+
 .start-options {
     flex: 1;
 
     padding: 5px;
 }
+
 
 .start-item {
     width: 100%;
@@ -658,6 +820,7 @@ body {
     cursor: default;
 }
 
+
 .start-item span {
     width: 28px;
 
@@ -666,19 +829,23 @@ body {
     text-align: center;
 }
 
+
 .start-item:hover {
     background: #663399;
 
     color: white;
 }
 
+
 .start-item:visited {
     color: black;
 }
 
+
 .start-item:hover:visited {
     color: white;
 }
+
 
 .start-divider {
     height: 2px;
@@ -715,6 +882,7 @@ body {
     z-index: 15000;
 }
 
+
 .start-button {
     height: 32px;
 
@@ -740,6 +908,7 @@ body {
     cursor: default;
 }
 
+
 .start-button.active,
 .start-button:active {
     border-top: 2px solid #404040;
@@ -747,6 +916,7 @@ body {
     border-right: 2px solid white;
     border-bottom: 2px solid white;
 }
+
 
 .taskbar-divider {
     width: 2px;
@@ -772,6 +942,7 @@ body {
 
     overflow: hidden;
 }
+
 
 .taskbar-window-button {
     width: 170px;
@@ -799,6 +970,7 @@ body {
 
     cursor: default;
 }
+
 
 .taskbar-window-button.active {
     background: #dfdfdf;
@@ -853,9 +1025,11 @@ body {
     transform: translate(-50%, -50%);
 }
 
+
 .dialog-window .window-content {
     height: calc(100% - 30px);
 }
+
 
 .restart-message {
     display: flex;
@@ -865,9 +1039,11 @@ body {
     align-items: flex-start;
 }
 
+
 .restart-icon {
     font-size: 40px;
 }
+
 
 .dialog-buttons {
     display: flex;
@@ -880,7 +1056,7 @@ body {
 
 
 /* =========================================================
-   MAXIMIZED WINDOW
+   MAXIMIZED
 ========================================================= */
 
 .window.maximized {
@@ -894,15 +1070,320 @@ body {
 }
 
 
-/* Resume fills available space when maximized */
-
 .resume-window.maximized .resume-viewer {
     height: calc(100% - 72px);
 }
 
 
 /* =========================================================
-   MOBILE / SMALL SCREEN
+   GLOBAL DARK MODE
+========================================================= */
+
+body.dark-mode {
+    color: #f0f0f0;
+}
+
+
+/* Window shell */
+
+body.dark-mode .window {
+    background: #202020;
+
+    border-top-color: #606060;
+    border-left-color: #606060;
+    border-right-color: #080808;
+    border-bottom-color: #080808;
+
+    box-shadow:
+        1px 1px 0 black,
+        -1px -1px 0 #404040;
+}
+
+
+/* Purple remains purple */
+
+body.dark-mode .window.active .window-titlebar {
+    background: #663399;
+    color: white;
+}
+
+
+body.dark-mode .window:not(.active) .window-titlebar {
+    background: #4b4b4b;
+    color: #d0d0d0;
+}
+
+
+/* Menu */
+
+body.dark-mode .window-menu {
+    background: #202020;
+    color: #f0f0f0;
+}
+
+
+body.dark-mode .menu-button {
+    color: #f0f0f0;
+}
+
+
+body.dark-mode .menu-button:hover,
+body.dark-mode .menu-group.open > .menu-button {
+    border-top-color: #606060;
+    border-left-color: #606060;
+    border-right-color: #080808;
+    border-bottom-color: #080808;
+}
+
+
+body.dark-mode .dropdown-menu {
+    background: #252525;
+
+    border-top-color: #606060;
+    border-left-color: #606060;
+    border-right-color: #080808;
+    border-bottom-color: #080808;
+}
+
+
+body.dark-mode .dropdown-menu button {
+    color: #f0f0f0;
+}
+
+
+body.dark-mode .dropdown-menu button:hover {
+    background: #663399;
+    color: white;
+}
+
+
+/* Address */
+
+body.dark-mode .address-bar {
+    background: #202020;
+
+    color: white;
+
+    border-top-color: #606060;
+    border-bottom-color: #080808;
+}
+
+
+body.dark-mode .address-bar div {
+    background: #191919;
+
+    color: #f0f0f0;
+
+    border-top-color: #080808;
+    border-left-color: #080808;
+    border-right-color: #606060;
+    border-bottom-color: #606060;
+}
+
+
+/* Content */
+
+body.dark-mode .window-content {
+    background: #191919;
+
+    color: #f0f0f0;
+
+    border-top-color: #080808;
+    border-left-color: #080808;
+    border-right-color: #606060;
+    border-bottom-color: #606060;
+}
+
+
+body.dark-mode .window-content a {
+    color: #8ab4f8;
+}
+
+
+body.dark-mode .window-content a:visited {
+    color: #c58af9;
+}
+
+
+/* File icons */
+
+body.dark-mode .file-icon {
+    color: #f0f0f0;
+}
+
+
+body.dark-mode .file-icon:hover {
+    background: #3b3154;
+
+    border-color: #bca7ff;
+}
+
+
+/* Status */
+
+body.dark-mode .status-bar {
+    background: #202020;
+
+    color: white;
+
+    border-top-color: #080808;
+    border-left-color: #080808;
+    border-right-color: #606060;
+    border-bottom-color: #606060;
+}
+
+
+/* Buttons */
+
+body.dark-mode .classic-button,
+body.dark-mode .window-controls button {
+    background: #303030;
+
+    color: white;
+
+    border-top-color: #606060;
+    border-left-color: #606060;
+    border-right-color: #080808;
+    border-bottom-color: #080808;
+}
+
+
+/* Resume shell */
+
+body.dark-mode .resume-toolbar {
+    background: #202020;
+
+    border-top-color: #606060;
+    border-bottom-color: #080808;
+}
+
+
+body.dark-mode .resume-viewer {
+    background: #101010;
+
+    border-top-color: #080808;
+    border-left-color: #080808;
+    border-right-color: #606060;
+    border-bottom-color: #606060;
+}
+
+
+/*
+Do NOT alter the PDF itself.
+*/
+
+
+/* Start menu */
+
+body.dark-mode .start-menu {
+    background: #202020;
+
+    color: white;
+
+    border-top-color: #606060;
+    border-left-color: #606060;
+    border-right-color: #080808;
+    border-bottom-color: #080808;
+}
+
+
+body.dark-mode .start-item {
+    color: white;
+}
+
+
+body.dark-mode .start-item:visited {
+    color: white;
+}
+
+
+body.dark-mode .start-item:hover {
+    background: #663399;
+
+    color: white;
+}
+
+
+body.dark-mode .start-divider {
+    border-top-color: #080808;
+    border-bottom-color: #606060;
+}
+
+
+/* Taskbar */
+
+body.dark-mode .taskbar {
+    background: #202020;
+
+    border-top-color: #606060;
+}
+
+
+body.dark-mode .start-button {
+    background: #303030;
+
+    color: white;
+
+    border-top-color: #606060;
+    border-left-color: #606060;
+    border-right-color: #080808;
+    border-bottom-color: #080808;
+}
+
+
+body.dark-mode .taskbar-divider {
+    border-left-color: #080808;
+    border-right-color: #606060;
+}
+
+
+body.dark-mode .taskbar-window-button {
+    background: #303030;
+
+    color: white;
+
+    border-top-color: #606060;
+    border-left-color: #606060;
+    border-right-color: #080808;
+    border-bottom-color: #080808;
+}
+
+
+body.dark-mode .taskbar-window-button.active {
+    background: #404040;
+
+    border-top-color: #080808;
+    border-left-color: #080808;
+    border-right-color: #606060;
+    border-bottom-color: #606060;
+}
+
+
+/* Tray */
+
+body.dark-mode .system-tray {
+    background: #202020;
+
+    color: white;
+
+    border-top-color: #080808;
+    border-left-color: #080808;
+    border-right-color: #606060;
+    border-bottom-color: #606060;
+}
+
+
+/* Dialog */
+
+body.dark-mode .dialog-window .window-content {
+    background: #191919;
+
+    color: white;
+}
+
+
+/* =========================================================
+   MOBILE
 ========================================================= */
 
 @media (max-width: 700px) {
@@ -914,6 +1395,7 @@ body {
         left: 5vw !important;
     }
 
+
     .resume-window {
         width: 94vw;
         height: 75vh;
@@ -923,11 +1405,18 @@ body {
         min-width: 0;
     }
 
+
     .taskbar-window-button {
         width: 100px;
     }
 
+
     .system-tray {
         min-width: 90px;
+    }
+
+
+    .dropdown-menu {
+        min-width: 140px;
     }
 }
