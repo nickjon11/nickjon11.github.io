@@ -1442,7 +1442,6 @@ body.dark-mode .resume-fallback {
         left: 5vw !important;
     }
 
-
     .resume-window {
         width: 94vw;
         height: 75vh;
@@ -1453,15 +1452,27 @@ body.dark-mode .resume-fallback {
     }
 
 
+    /* Hide embedded PDF on mobile */
+
+    .resume-viewer .resume-pdf {
+        display: none;
+    }
+
+
+    /* Show fallback instead */
+
+    .resume-viewer .resume-fallback {
+        display: flex;
+    }
+
+
     .taskbar-window-button {
         width: 100px;
     }
 
-
     .system-tray {
         min-width: 90px;
     }
-
 
     .dropdown-menu {
         min-width: 140px;
