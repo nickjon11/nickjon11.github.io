@@ -437,16 +437,45 @@
             </div>
 
 
-            <!-- Embedded PDF -->
+            <!-- Embedded PDF / Mobile Fallback -->
 
-            <div class="resume-viewer">
+<div class="resume-viewer">
 
-                <iframe
-                    src="Jonathan Lachman Resume.pdf"
-                    title="Jonathan Lachman Resume">
-                </iframe>
+    <!-- Desktop PDF Viewer -->
 
-            </div>
+    <iframe
+        class="resume-pdf"
+        src="Jonathan Lachman Resume.pdf"
+        title="Jonathan Lachman Resume">
+    </iframe>
+
+
+    <!-- Mobile Fallback -->
+
+    <div class="resume-fallback">
+
+        <div class="resume-fallback-icon">
+            📄
+        </div>
+
+        <div class="resume-fallback-title">
+            Jonathan Lachman Resume
+        </div>
+
+        <p>
+            Your browser may not support viewing the PDF
+            directly inside this window.
+        </p>
+
+        <a href="Jonathan Lachman Resume.pdf"
+           target="_blank"
+           class="classic-button">
+            📄 Open Resume
+        </a>
+
+    </div>
+
+</div>
 
         </section>
 
