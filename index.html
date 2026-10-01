@@ -7,86 +7,609 @@
 
     <title>Jonathan Lachman</title>
 
-    <!-- Connects this HTML page to styles.css -->
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-    <!-- Header -->
-    <header>
-        <h1>Jonathan Lachman</h1>
-        <p>Information Technology | Cybersecurity | Systems Administration</p>
-    </header>
+    <!-- ======================================================
+         DESKTOP
+    ======================================================= -->
 
-    <!-- Navigation -->
-    <nav>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-    </nav>
+    <main id="desktop" class="desktop">
 
-    <!-- Main Content -->
-    <main>
+        <!-- Desktop Icons -->
 
-        <!-- About Section -->
-        <section id="about">
-            <h2>About Me</h2>
+        <button class="desktop-icon"
+                data-window="about-window"
+                style="top: 20px; left: 20px;">
+            <span class="desktop-icon-image">🖥️</span>
+            <span>About Me</span>
+        </button>
 
-            <p>
-                Welcome to my website. I am a graduate student studying
-                Information Technology with a focus on cybersecurity.
-                My interests include cybersecurity, system administration,
-                networking, and IT infrastructure.
-            </p>
+        <button class="desktop-icon"
+                data-window="projects-window"
+                style="top: 115px; left: 20px;">
+            <span class="desktop-icon-image">📁</span>
+            <span>Projects</span>
+        </button>
+
+        <button class="desktop-icon"
+                data-window="resume-window"
+                style="top: 210px; left: 20px;">
+            <span class="desktop-icon-image">📄</span>
+            <span>Resume</span>
+        </button>
+
+
+        <!-- ==================================================
+             ABOUT ME WINDOW
+        =================================================== -->
+
+        <section class="window"
+                 id="about-window"
+                 data-title="About Me"
+                 style="top: 90px; left: 150px;">
+
+            <div class="window-titlebar">
+
+                <div class="window-title">
+                    <span>🖥️</span>
+                    <span>About Me</span>
+                </div>
+
+                <div class="window-controls">
+                    <button class="minimize-button" aria-label="Minimize">_</button>
+                    <button class="maximize-button" aria-label="Maximize">□</button>
+                    <button class="close-button" aria-label="Close">×</button>
+                </div>
+
+            </div>
+
+            <div class="window-menu">
+                <span>File</span>
+                <span>Edit</span>
+                <span>View</span>
+                <span>Help</span>
+            </div>
+
+            <div class="window-toolbar">
+                <button>← Back</button>
+                <button>→ Forward</button>
+                <button>↑ Up</button>
+            </div>
+
+            <div class="address-bar">
+                <span>Address</span>
+                <div>🖥️ Jonathan's Computer\About Me</div>
+            </div>
+
+            <div class="window-content">
+
+                <h1>Jonathan Lachman</h1>
+
+                <p>
+                    Welcome to my personal website.
+                </p>
+
+                <p>
+                    I am a graduate student studying Information Technology
+                    with a focus on cybersecurity.
+                </p>
+
+                <p>
+                    My interests include cybersecurity, system administration,
+                    networking, Linux, and IT infrastructure.
+                </p>
+
+            </div>
+
+            <div class="status-bar">
+                About Jonathan Lachman
+            </div>
+
         </section>
 
-        <!-- Projects Section -->
-        <section id="projects">
-            <h2>Projects</h2>
 
-            <h3>FastAPI Calculator</h3>
-            <p>
-                A Python-based calculator application built using FastAPI,
-                automated testing, Docker, and GitHub Actions.
-            </p>
+        <!-- ==================================================
+             PROJECTS WINDOW
+        =================================================== -->
 
-            <h3>File Server Project</h3>
-            <p>
-                A secure file-transfer server project focused on permissions,
-                encryption, backups, monitoring, and logging.
-            </p>
+        <section class="window"
+                 id="projects-window"
+                 data-title="Projects"
+                 style="top: 130px; left: 300px;">
+
+            <div class="window-titlebar">
+
+                <div class="window-title">
+                    <span>📁</span>
+                    <span>Projects</span>
+                </div>
+
+                <div class="window-controls">
+                    <button class="minimize-button" aria-label="Minimize">_</button>
+                    <button class="maximize-button" aria-label="Maximize">□</button>
+                    <button class="close-button" aria-label="Close">×</button>
+                </div>
+
+            </div>
+
+            <div class="window-menu">
+                <span>File</span>
+                <span>Edit</span>
+                <span>View</span>
+                <span>Favorites</span>
+                <span>Help</span>
+            </div>
+
+            <div class="window-toolbar">
+                <button>← Back</button>
+                <button>→ Forward</button>
+                <button>↑ Up</button>
+            </div>
+
+            <div class="address-bar">
+                <span>Address</span>
+                <div>📁 Jonathan's Computer\Projects</div>
+            </div>
+
+            <div class="window-content explorer-content">
+
+                <button class="file-icon"
+                        data-window="fileserver-window">
+                    <span>📁</span>
+                    <span>File Server</span>
+                </button>
+
+                <button class="file-icon"
+                        data-window="fastapi-window">
+                    <span>📁</span>
+                    <span>FastAPI Calculator</span>
+                </button>
+
+                <button class="file-icon"
+                        data-window="taxbot-window">
+                    <span>📁</span>
+                    <span>AI TaxBot</span>
+                </button>
+
+            </div>
+
+            <div class="status-bar">
+                3 object(s)
+            </div>
+
         </section>
 
-        <!-- Skills Section -->
-        <section id="skills">
-            <h2>Technical Skills</h2>
 
-            <p>
-                Linux, Python, Git, GitHub, Docker, FastAPI, PostgreSQL,
-                Networking, Cybersecurity, and System Administration.
-            </p>
-        </section>
+        <!-- ==================================================
+             RESUME WINDOW
+        =================================================== -->
 
-        <!-- Contact Section -->
-        <section id="contact">
-            <h2>Contact</h2>
+        <section class="window"
+                 id="resume-window"
+                 data-title="Resume"
+                 style="top: 110px; left: 220px;">
 
-            <p>
-                GitHub:
-                <a href="https://github.com/nickjon11" target="_blank">
-                    nickjon11
+            <div class="window-titlebar">
+
+                <div class="window-title">
+                    <span>📄</span>
+                    <span>Resume</span>
+                </div>
+
+                <div class="window-controls">
+                    <button class="minimize-button">_</button>
+                    <button class="maximize-button">□</button>
+                    <button class="close-button">×</button>
+                </div>
+
+            </div>
+
+            <div class="window-menu">
+                <span>File</span>
+                <span>Edit</span>
+                <span>View</span>
+                <span>Help</span>
+            </div>
+
+            <div class="window-content">
+
+                <h1>Resume</h1>
+
+                <p>
+                    My resume contains information about my education,
+                    technical skills, projects, and professional experience.
+                </p>
+
+                <!--
+                Later, put resume.pdf in the website folder and use:
+
+                <a class="classic-button"
+                   href="resume.pdf"
+                   target="_blank">
+                    Open Resume
                 </a>
-            </p>
+                -->
+
+            </div>
+
+            <div class="status-bar">
+                Resume
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             FILE SERVER PROJECT
+        =================================================== -->
+
+        <section class="window project-window"
+                 id="fileserver-window"
+                 data-title="File Server"
+                 style="top: 160px; left: 380px;">
+
+            <div class="window-titlebar">
+
+                <div class="window-title">
+                    <span>📁</span>
+                    <span>File Server</span>
+                </div>
+
+                <div class="window-controls">
+                    <button class="minimize-button">_</button>
+                    <button class="maximize-button">□</button>
+                    <button class="close-button">×</button>
+                </div>
+
+            </div>
+
+            <div class="window-content">
+
+                <h2>File Server</h2>
+
+                <p>
+                    A secure file-transfer server project designed for a
+                    small organization.
+                </p>
+
+                <h3>Project Focus</h3>
+
+                <p>
+                    Encryption, user permissions, backups, monitoring,
+                    documentation, and logging.
+                </p>
+
+            </div>
+
+            <div class="status-bar">
+                Project Information
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             FASTAPI PROJECT
+        =================================================== -->
+
+        <section class="window project-window"
+                 id="fastapi-window"
+                 data-title="FastAPI Calculator"
+                 style="top: 180px; left: 420px;">
+
+            <div class="window-titlebar">
+
+                <div class="window-title">
+                    <span>📁</span>
+                    <span>FastAPI Calculator</span>
+                </div>
+
+                <div class="window-controls">
+                    <button class="minimize-button">_</button>
+                    <button class="maximize-button">□</button>
+                    <button class="close-button">×</button>
+                </div>
+
+            </div>
+
+            <div class="window-content">
+
+                <h2>FastAPI Calculator</h2>
+
+                <p>
+                    A Python calculator application developed using FastAPI.
+                </p>
+
+                <h3>Technologies</h3>
+
+                <p>
+                    Python, FastAPI, PostgreSQL, Docker, pytest,
+                    and GitHub Actions.
+                </p>
+
+            </div>
+
+            <div class="status-bar">
+                Project Information
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             AI TAXBOT PROJECT
+        =================================================== -->
+
+        <section class="window project-window"
+                 id="taxbot-window"
+                 data-title="AI TaxBot"
+                 style="top: 200px; left: 460px;">
+
+            <div class="window-titlebar">
+
+                <div class="window-title">
+                    <span>📁</span>
+                    <span>AI TaxBot</span>
+                </div>
+
+                <div class="window-controls">
+                    <button class="minimize-button">_</button>
+                    <button class="maximize-button">□</button>
+                    <button class="close-button">×</button>
+                </div>
+
+            </div>
+
+            <div class="window-content">
+
+                <h2>AI TaxBot</h2>
+
+                <p>
+                    An AI-based tax assistant project developed using Python.
+                </p>
+
+                <h3>Project Repository</h3>
+
+                <p>
+                    <a href="https://github.com/nickjon11/AI-TaxBot"
+                       target="_blank">
+                        Open AI TaxBot on GitHub
+                    </a>
+                </p>
+
+            </div>
+
+            <div class="status-bar">
+                Project Information
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             CONTACT WINDOW
+        =================================================== -->
+
+        <section class="window small-window"
+                 id="contact-window"
+                 data-title="Contact"
+                 style="top: 170px; left: 400px;">
+
+            <div class="window-titlebar">
+
+                <div class="window-title">
+                    <span>✉️</span>
+                    <span>Contact</span>
+                </div>
+
+                <div class="window-controls">
+                    <button class="close-button">×</button>
+                </div>
+
+            </div>
+
+            <div class="window-content">
+
+                <h2>Contact</h2>
+
+                <p>
+                    GitHub:
+                    <a href="https://github.com/nickjon11"
+                       target="_blank">
+                        nickjon11
+                    </a>
+                </p>
+
+                <p>
+                    Additional contact information can be added here.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             HELP WINDOW
+        =================================================== -->
+
+        <section class="window small-window"
+                 id="help-window"
+                 data-title="Help"
+                 style="top: 150px; left: 450px;">
+
+            <div class="window-titlebar">
+
+                <div class="window-title">
+                    <span>❓</span>
+                    <span>Help</span>
+                </div>
+
+                <div class="window-controls">
+                    <button class="close-button">×</button>
+                </div>
+
+            </div>
+
+            <div class="window-content">
+
+                <h2>Website Help</h2>
+
+                <p>Welcome to Jonathan's portfolio.</p>
+
+                <p>
+                    Double-click desktop icons and project folders
+                    to open them.
+                </p>
+
+                <p>
+                    Drag windows using the purple title bar.
+                </p>
+
+                <p>
+                    Use _ to minimize, □ to maximize,
+                    and × to close windows.
+                </p>
+
+                <p>
+                    Minimized windows can be restored from the taskbar.
+                </p>
+
+                <button class="classic-button close-help">
+                    OK
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+             RESTART CONFIRMATION
+        =================================================== -->
+
+        <section class="window dialog-window"
+                 id="restart-window"
+                 data-title="Restart Website">
+
+            <div class="window-titlebar">
+
+                <div class="window-title">
+                    <span>🔄</span>
+                    <span>Restart Website</span>
+                </div>
+
+                <div class="window-controls">
+                    <button class="close-button">×</button>
+                </div>
+
+            </div>
+
+            <div class="window-content restart-content">
+
+                <div class="restart-message">
+                    <span class="restart-icon">🔄</span>
+
+                    <div>
+                        <strong>Restart Website?</strong>
+
+                        <p>
+                            This will close all open windows and return
+                            the desktop to its default state.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="dialog-buttons">
+                    <button id="restart-yes" class="classic-button">
+                        Yes
+                    </button>
+
+                    <button id="restart-no" class="classic-button">
+                        No
+                    </button>
+                </div>
+
+            </div>
+
         </section>
 
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Jonathan Lachman</p>
+
+    <!-- ======================================================
+         START MENU
+    ======================================================= -->
+
+    <div id="start-menu" class="start-menu">
+
+        <div class="start-sidebar">
+            <span>Jonathan Lachman</span>
+        </div>
+
+        <div class="start-options">
+
+            <a href="https://github.com/nickjon11"
+               target="_blank"
+               class="start-item">
+                <span>🌐</span>
+                GitHub
+            </a>
+
+            <button class="start-item"
+                    data-window="contact-window">
+                <span>✉️</span>
+                Contact
+            </button>
+
+            <button class="start-item"
+                    data-window="help-window">
+                <span>❓</span>
+                Help
+            </button>
+
+            <div class="start-divider"></div>
+
+            <button class="start-item"
+                    data-window="restart-window">
+                <span>🔄</span>
+                Restart Website...
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ======================================================
+         TASKBAR
+    ======================================================= -->
+
+    <footer class="taskbar">
+
+        <button id="start-button" class="start-button">
+            <span>🪟</span>
+            <strong>Start</strong>
+        </button>
+
+        <div class="taskbar-divider"></div>
+
+        <div id="taskbar-programs"
+             class="taskbar-programs">
+        </div>
+
+        <div class="system-tray">
+            <span>🔊</span>
+            <span id="clock">--:--</span>
+        </div>
+
     </footer>
+
+
+    <script src="script.js"></script>
 
 </body>
 

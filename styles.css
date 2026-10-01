@@ -1,112 +1,802 @@
-/* General page styling */
+/* =========================================================
+   BASIC PAGE
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    height: 100%;
     margin: 0;
+}
+
+body {
+    overflow: hidden;
+
+    font-family:
+        Tahoma,
+        "MS Sans Serif",
+        Arial,
+        sans-serif;
+
+    font-size: 13px;
+
+    background-image: url("1047933.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    user-select: none;
+}
+
+
+/* =========================================================
+   DESKTOP
+========================================================= */
+
+.desktop {
+    position: relative;
+
+    width: 100vw;
+    height: calc(100vh - 40px);
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   DESKTOP ICONS
+========================================================= */
+
+.desktop-icon {
+    position: absolute;
+
+    width: 85px;
+
+    padding: 5px;
+
+    border: 1px solid transparent;
+
+    background: transparent;
+
+    color: white;
+
+    text-align: center;
+
+    cursor: default;
+
+    text-shadow:
+        1px 1px 2px black,
+        -1px -1px 2px black;
+}
+
+.desktop-icon:hover {
+    border: 1px dotted white;
+    background: rgba(70, 50, 140, 0.35);
+}
+
+.desktop-icon-image {
+    display: block;
+
+    margin-bottom: 4px;
+
+    font-size: 36px;
+}
+
+
+/* =========================================================
+   WINDOWS
+========================================================= */
+
+.window {
+    position: absolute;
+
+    display: none;
+
+    width: 600px;
+    height: 430px;
+
+    min-width: 300px;
+    min-height: 200px;
+
+    background: #c0c0c0;
+
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #404040;
+    border-bottom: 2px solid #404040;
+
+    box-shadow:
+        1px 1px 0 #000000,
+        -1px -1px 0 #dfdfdf;
+
+    padding: 3px;
+}
+
+
+/* Active window */
+
+.window.active .window-titlebar {
+    background: #663399;
+    color: white;
+}
+
+
+/* Inactive window */
+
+.window:not(.active) .window-titlebar {
+    background: #808080;
+    color: #dcdcdc;
+}
+
+
+/* =========================================================
+   TITLE BAR
+========================================================= */
+
+.window-titlebar {
+    height: 26px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 2px 3px;
+
+    font-weight: bold;
+
+    cursor: move;
+}
+
+.window-title {
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   WINDOW BUTTONS
+========================================================= */
+
+.window-controls {
+    display: flex;
+
+    gap: 2px;
+}
+
+.window-controls button {
+    width: 22px;
+    height: 20px;
+
     padding: 0;
-    background-color: #f5f5f5;
+
+    background: #c0c0c0;
+
+    border-top: 2px solid #ffffff;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #404040;
+    border-bottom: 2px solid #404040;
+
+    color: black;
+
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+
+    line-height: 14px;
+
+    cursor: default;
+}
+
+.window-controls button:active {
+    border-top: 2px solid #404040;
+    border-left: 2px solid #404040;
+    border-right: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+}
+
+
+/* =========================================================
+   WINDOW MENU
+========================================================= */
+
+.window-menu {
+    height: 25px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 0 8px;
+
     color: #222;
 }
 
-/* Header */
-header {
-    background-color: #1f2937;
-    color: white;
-    text-align: center;
-    padding: 60px 20px;
-}
-
-header h1 {
-    margin: 0;
-    font-size: 42px;
-}
-
-header p {
-    margin-top: 10px;
-    font-size: 18px;
-}
-
-/* Navigation bar */
-nav {
-    background-color: #111827;
-    text-align: center;
-    padding: 15px;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 15px;
-    font-size: 16px;
-}
-
-nav a:hover {
+.window-menu span::first-letter {
     text-decoration: underline;
 }
 
-/* Main content */
-main {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 0 20px;
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.window-toolbar {
+    min-height: 46px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 5px;
+
+    border-top: 1px solid #808080;
+    border-bottom: 1px solid #808080;
 }
 
-/* Sections */
-section {
-    background-color: white;
-    padding: 25px;
-    margin-bottom: 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.window-toolbar button {
+    padding: 5px 10px;
+
+    border: 1px solid transparent;
+
+    background: transparent;
+
+    color: #333;
+
+    cursor: default;
 }
 
-section h2 {
+.window-toolbar button:hover {
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+    border-right: 1px solid #808080;
+    border-bottom: 1px solid #808080;
+}
+
+
+/* =========================================================
+   ADDRESS BAR
+========================================================= */
+
+.address-bar {
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+
+    height: 30px;
+
+    padding: 3px;
+
+    border-bottom: 1px solid #808080;
+}
+
+.address-bar > span {
+    padding: 0 4px;
+}
+
+.address-bar div {
+    flex: 1;
+
+    height: 22px;
+
+    padding: 2px 5px;
+
+    background: white;
+
+    border-top: 2px solid #404040;
+    border-left: 2px solid #404040;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   WINDOW CONTENT
+========================================================= */
+
+.window-content {
+    height: calc(100% - 134px);
+
+    padding: 18px;
+
+    overflow: auto;
+
+    background: white;
+
+    border-top: 2px solid #404040;
+    border-left: 2px solid #404040;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+
+    user-select: text;
+}
+
+.window-content h1 {
     margin-top: 0;
-    color: #1f2937;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 10px;
+
+    font-size: 28px;
 }
 
-/* Project headings */
-section h3 {
-    color: #374151;
-    margin-bottom: 5px;
+.window-content h2 {
+    margin-top: 0;
 }
 
-/* Paragraphs */
-p {
-    line-height: 1.6;
+.window-content p {
+    line-height: 1.5;
 }
 
-/* Links */
-a {
-    color: #2563eb;
+.window-content a {
+    color: #0000ee;
 }
 
-a:hover {
-    color: #1d4ed8;
+.window-content a:visited {
+    color: #551a8b;
 }
 
-/* Footer */
-footer {
-    background-color: #1f2937;
-    color: white;
+
+/* =========================================================
+   EXPLORER PROJECT ICONS
+========================================================= */
+
+.explorer-content {
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+
+    gap: 25px;
+
+    user-select: none;
+}
+
+.file-icon {
+    width: 110px;
+    height: 90px;
+
+    padding: 8px;
+
+    border: 1px solid transparent;
+
+    background: transparent;
+
     text-align: center;
-    padding: 20px;
-    margin-top: 40px;
+
+    cursor: default;
 }
 
-/* Mobile devices */
-@media (max-width: 600px) {
-    header h1 {
-        font-size: 32px;
+.file-icon:hover {
+    border: 1px dotted #000080;
+    background: #e8e0ff;
+}
+
+.file-icon span:first-child {
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-size: 38px;
+}
+
+
+/* =========================================================
+   STATUS BAR
+========================================================= */
+
+.status-bar {
+    height: 23px;
+
+    margin-top: 3px;
+
+    padding: 3px 6px;
+
+    border-top: 2px solid #808080;
+    border-left: 2px solid #808080;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+}
+
+
+/* =========================================================
+   PROJECT WINDOWS
+========================================================= */
+
+.project-window {
+    width: 500px;
+    height: 340px;
+}
+
+.project-window .window-content {
+    height: calc(100% - 55px);
+}
+
+
+/* =========================================================
+   SMALL WINDOWS
+========================================================= */
+
+.small-window {
+    width: 420px;
+    height: 310px;
+}
+
+.small-window .window-content {
+    height: calc(100% - 30px);
+}
+
+
+/* =========================================================
+   CLASSIC BUTTON
+========================================================= */
+
+.classic-button {
+    display: inline-block;
+
+    min-width: 75px;
+
+    padding: 6px 15px;
+
+    background: #c0c0c0;
+
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    border-right: 2px solid #404040;
+    border-bottom: 2px solid #404040;
+
+    color: black;
+
+    font-family: inherit;
+
+    text-decoration: none;
+
+    cursor: default;
+}
+
+.classic-button:active {
+    border-top: 2px solid #404040;
+    border-left: 2px solid #404040;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+}
+
+
+/* =========================================================
+   START MENU
+========================================================= */
+
+.start-menu {
+    position: fixed;
+
+    left: 2px;
+    bottom: 40px;
+
+    display: none;
+
+    width: 285px;
+    height: 260px;
+
+    background: #c0c0c0;
+
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    border-right: 2px solid #404040;
+    border-bottom: 2px solid #404040;
+
+    z-index: 20000;
+}
+
+.start-menu.open {
+    display: flex;
+}
+
+.start-sidebar {
+    position: relative;
+
+    width: 40px;
+
+    background: #663399;
+
+    color: white;
+
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.start-sidebar span {
+    position: absolute;
+
+    bottom: 8px;
+    left: 7px;
+
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+}
+
+.start-options {
+    flex: 1;
+
+    padding: 5px;
+}
+
+.start-item {
+    width: 100%;
+    height: 49px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 7px 10px;
+
+    border: 0;
+
+    background: transparent;
+
+    color: black;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    text-align: left;
+    text-decoration: none;
+
+    cursor: default;
+}
+
+.start-item span {
+    width: 28px;
+
+    font-size: 24px;
+
+    text-align: center;
+}
+
+.start-item:hover {
+    background: #663399;
+    color: white;
+}
+
+.start-divider {
+    height: 2px;
+
+    margin: 4px;
+
+    border-top: 1px solid #808080;
+    border-bottom: 1px solid white;
+}
+
+
+/* =========================================================
+   TASKBAR
+========================================================= */
+
+.taskbar {
+    position: fixed;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 3px;
+
+    background: #c0c0c0;
+
+    border-top: 2px solid white;
+
+    z-index: 15000;
+}
+
+.start-button {
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 2px 8px;
+
+    background: #c0c0c0;
+
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    border-right: 2px solid #404040;
+    border-bottom: 2px solid #404040;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    cursor: default;
+}
+
+.start-button.active,
+.start-button:active {
+    border-top: 2px solid #404040;
+    border-left: 2px solid #404040;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+}
+
+.taskbar-divider {
+    width: 2px;
+    height: 30px;
+
+    margin: 0 5px;
+
+    border-left: 1px solid #808080;
+    border-right: 1px solid white;
+}
+
+
+/* =========================================================
+   TASKBAR PROGRAMS
+========================================================= */
+
+.taskbar-programs {
+    flex: 1;
+
+    display: flex;
+
+    gap: 4px;
+
+    overflow: hidden;
+}
+
+.taskbar-window-button {
+    width: 170px;
+    height: 30px;
+
+    padding: 3px 8px;
+
+    overflow: hidden;
+
+    background: #c0c0c0;
+
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    border-right: 2px solid #404040;
+    border-bottom: 2px solid #404040;
+
+    font-family: inherit;
+
+    text-align: left;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    cursor: default;
+}
+
+.taskbar-window-button.active {
+    background: #dfdfdf;
+
+    border-top: 2px solid #404040;
+    border-left: 2px solid #404040;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   SYSTEM TRAY
+========================================================= */
+
+.system-tray {
+    min-width: 105px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 3px 8px;
+
+    border-top: 2px solid #808080;
+    border-left: 2px solid #808080;
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   RESTART DIALOG
+========================================================= */
+
+.dialog-window {
+    width: 420px;
+    height: 210px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+.dialog-window .window-content {
+    height: calc(100% - 30px);
+}
+
+.restart-message {
+    display: flex;
+
+    gap: 20px;
+
+    align-items: flex-start;
+}
+
+.restart-icon {
+    font-size: 40px;
+}
+
+.dialog-buttons {
+    display: flex;
+    justify-content: flex-end;
+
+    gap: 8px;
+
+    margin-top: 25px;
+}
+
+
+/* =========================================================
+   MAXIMIZED WINDOW
+========================================================= */
+
+.window.maximized {
+    top: 0 !important;
+    left: 0 !important;
+
+    width: 100vw !important;
+    height: calc(100vh - 40px) !important;
+
+    transform: none !important;
+}
+
+
+/* =========================================================
+   MOBILE / SMALL SCREEN
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .window {
+        width: 90vw;
+        height: 65vh;
+
+        left: 5vw !important;
     }
 
-    nav a {
-        display: block;
-        margin: 10px 0;
+    .taskbar-window-button {
+        width: 100px;
     }
 
-    main {
-        margin-top: 20px;
+    .system-tray {
+        min-width: 90px;
     }
 }
