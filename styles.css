@@ -1,0 +1,112 @@
+/* General page styling */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #222;
+}
+
+/* Header */
+header {
+    background-color: #1f2937;
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 42px;
+}
+
+header p {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+/* Navigation bar */
+nav {
+    background-color: #111827;
+    text-align: center;
+    padding: 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Main content */
+main {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* Sections */
+section {
+    background-color: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+    margin-top: 0;
+    color: #1f2937;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+
+/* Project headings */
+section h3 {
+    color: #374151;
+    margin-bottom: 5px;
+}
+
+/* Paragraphs */
+p {
+    line-height: 1.6;
+}
+
+/* Links */
+a {
+    color: #2563eb;
+}
+
+a:hover {
+    color: #1d4ed8;
+}
+
+/* Footer */
+footer {
+    background-color: #1f2937;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+/* Mobile devices */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 32px;
+    }
+
+    nav a {
+        display: block;
+        margin: 10px 0;
+    }
+
+    main {
+        margin-top: 20px;
+    }
+}
