@@ -1,56 +1,87 @@
 // =========================================================
-// GLOBAL WINDOW STATE
+// WINDOWS 95/98 PORTFOLIO
 // =========================================================
-
-let highestZIndex = 100;
 
 const windows = document.querySelectorAll(".window");
-const desktopIcons = document.querySelectorAll(".desktop-icon");
-const fileIcons = document.querySelectorAll(".file-icon");
-
+const desktop = document.getElementById("desktop");
 const taskbarPrograms = document.getElementById("taskbar-programs");
 
-const startButton = document.getElementById("start-button");
-const startMenu = document.getElementById("start-menu");
+let highestZ = 100;
 
 
 // =========================================================
-// CLOCK
+// WINDOW ACTIVATION
 // =========================================================
 
-function updateClock() {
+function activateWindow(windowElement) {
 
-    const now = new Date();
-
-    const time = now.toLocaleTimeString([], {
-        hour: "numeric",
-        minute: "2-digit"
+    windows.forEach((win) => {
+        win.classList.remove("active");
     });
 
-    document.getElementById("clock").textContent = time;
-}
-
-updateClock();
-
-setInterval(updateClock, 1000);
-
-
-// =========================================================
-// BRING WINDOW TO FRONT
-// =========================================================
-
-function focusWindow(windowElement) {
-
-    windows.forEach(window => {
-        window.classList.remove("active");
+    document.querySelectorAll(".taskbar-window-button").forEach((button) => {
+        button.classList.remove("active");
     });
 
-    highestZIndex++;
+    highestZ++;
 
-    windowElement.style.zIndex = highestZIndex;
+    windowElement.style.zIndex = highestZ;
     windowElement.classList.add("active");
 
-    updateTaskbarButtons();
+    const taskButton = document.querySelector(
+        `.taskbar-window-button[data-task-window="${windowElement.id}"]`
+    );
+
+    if (taskButton) {
+        taskButton.classList.add("active");
+    }
+}
+
+
+// =========================================================
+// TASKBAR BUTTONS
+// =========================================================
+
+function createTaskbarButton(windowElement) {
+
+    const existingButton = document.querySelector(
+        `.taskbar-window-button[data-task-window="${windowElement.id}"]`
+    );
+
+    if (existingButton) {
+        return;
+    }
+
+    const button = document.createElement("button");
+
+    button.className = "taskbar-window-button";
+    button.dataset.taskWindow = windowElement.id;
+
+    button.textContent =
+        windowElement.dataset.title || "Window";
+
+    button.addEventListener("click", () => {
+
+        if (windowElement.style.display === "none") {
+
+            windowElement.style.display = "block";
+
+            activateWindow(windowElement);
+
+        } else if (windowElement.classList.contains("active")) {
+
+            minimizeWindow(windowElement);
+
+        } else {
+
+            windowElement.style.display = "block";
+
+            activateWindow(windowElement);
+        }
+
+    });
+
+    taskbarPrograms.appendChild(button);
 }
 
 
@@ -58,22 +89,17 @@ function focusWindow(windowElement) {
 // OPEN WINDOW
 // =========================================================
 
-function openWindow(windowId) {
-
-    const windowElement = document.getElementById(windowId);
+function openWindow(windowElement) {
 
     if (!windowElement) {
         return;
     }
 
     windowElement.style.display = "block";
-    windowElement.dataset.minimized = "false";
-
-    focusWindow(windowElement);
 
     createTaskbarButton(windowElement);
 
-    closeStartMenu();
+    activateWindow(windowElement);
 }
 
 
@@ -83,18 +109,20 @@ function openWindow(windowId) {
 
 function closeWindow(windowElement) {
 
-    windowElement.style.display = "none";
-    windowElement.dataset.minimized = "false";
-
-    const button = document.querySelector(
-        `.taskbar-window-button[data-window="${windowElement.id}"]`
-    );
-
-    if (button) {
-        button.remove();
+    if (!windowElement) {
+        return;
     }
 
-    activateTopWindow();
+    windowElement.style.display = "none";
+    windowElement.classList.remove("active");
+
+    const taskButton = document.querySelector(
+        `.taskbar-window-button[data-task-window="${windowElement.id}"]`
+    );
+
+    if (taskButton) {
+        taskButton.remove();
+    }
 }
 
 
@@ -104,14 +132,20 @@ function closeWindow(windowElement) {
 
 function minimizeWindow(windowElement) {
 
-    windowElement.style.display = "none";
-    windowElement.dataset.minimized = "true";
+    if (!windowElement) {
+        return;
+    }
 
+    windowElement.style.display = "none";
     windowElement.classList.remove("active");
 
-    activateTopWindow();
+    const taskButton = document.querySelector(
+        `.taskbar-window-button[data-task-window="${windowElement.id}"]`
+    );
 
-    updateTaskbarButtons();
+    if (taskButton) {
+        taskButton.classList.remove("active");
+    }
 }
 
 
@@ -119,377 +153,271 @@ function minimizeWindow(windowElement) {
 // MAXIMIZE WINDOW
 // =========================================================
 
-function maximizeWindow(windowElement) {
+function toggleMaximize(windowElement) {
 
-    if (!windowElement.classList.contains("maximized")) {
-
-        windowElement.dataset.previousTop = windowElement.style.top;
-        windowElement.dataset.previousLeft = windowElement.style.left;
-        windowElement.dataset.previousWidth = windowElement.style.width;
-        windowElement.dataset.previousHeight = windowElement.style.height;
-
-        windowElement.classList.add("maximized");
-
-    } else {
-
-        windowElement.classList.remove("maximized");
-
-        windowElement.style.top =
-            windowElement.dataset.previousTop || "";
-
-        windowElement.style.left =
-            windowElement.dataset.previousLeft || "";
-
-        windowElement.style.width =
-            windowElement.dataset.previousWidth || "";
-
-        windowElement.style.height =
-            windowElement.dataset.previousHeight || "";
-    }
-
-    focusWindow(windowElement);
-}
-
-
-// =========================================================
-// ACTIVATE TOP VISIBLE WINDOW
-// =========================================================
-
-function activateTopWindow() {
-
-    let topWindow = null;
-    let topZ = -1;
-
-    windows.forEach(window => {
-
-        if (window.style.display === "block") {
-
-            const z = Number(window.style.zIndex) || 0;
-
-            if (z > topZ) {
-                topZ = z;
-                topWindow = window;
-            }
-        }
-    });
-
-    windows.forEach(window => {
-        window.classList.remove("active");
-    });
-
-    if (topWindow) {
-        topWindow.classList.add("active");
-    }
-
-    updateTaskbarButtons();
-}
-
-
-// =========================================================
-// TASKBAR BUTTON
-// =========================================================
-
-function createTaskbarButton(windowElement) {
-
-    const existingButton = document.querySelector(
-        `.taskbar-window-button[data-window="${windowElement.id}"]`
-    );
-
-    if (existingButton) {
-        updateTaskbarButtons();
+    if (!windowElement) {
         return;
     }
 
-    const button = document.createElement("button");
+    windowElement.classList.toggle("maximized");
 
-    button.className = "taskbar-window-button";
+    activateWindow(windowElement);
+}
 
-    button.dataset.window = windowElement.id;
 
-    button.textContent =
-        windowElement.dataset.title || "Window";
+// =========================================================
+// DATA-WINDOW BUTTONS
+// =========================================================
+
+document.querySelectorAll("[data-window]").forEach((button) => {
+
+    button.addEventListener("dblclick", () => {
+
+        /*
+         * Desktop icons and Explorer icons open
+         * with a double click.
+         */
+
+        if (
+            button.classList.contains("desktop-icon") ||
+            button.classList.contains("file-icon")
+        ) {
+
+            const target =
+                document.getElementById(button.dataset.window);
+
+            openWindow(target);
+        }
+
+    });
+
 
     button.addEventListener("click", () => {
 
-        if (
-            windowElement.classList.contains("active") &&
-            windowElement.style.display === "block"
-        ) {
+        /*
+         * Start-menu items open with one click.
+         */
 
-            minimizeWindow(windowElement);
+        if (button.classList.contains("start-item")) {
 
-        } else {
+            const target =
+                document.getElementById(button.dataset.window);
 
-            windowElement.style.display = "block";
-            windowElement.dataset.minimized = "false";
+            openWindow(target);
 
-            focusWindow(windowElement);
+            closeStartMenu();
         }
+
     });
 
-    taskbarPrograms.appendChild(button);
-
-    updateTaskbarButtons();
-}
+});
 
 
 // =========================================================
-// UPDATE TASKBAR
+// WINDOW CONTROL BUTTONS
 // =========================================================
 
-function updateTaskbarButtons() {
+document.querySelectorAll(".close-button").forEach((button) => {
 
-    const buttons =
-        document.querySelectorAll(".taskbar-window-button");
+    button.addEventListener("click", (event) => {
 
-    buttons.forEach(button => {
+        event.stopPropagation();
 
         const windowElement =
-            document.getElementById(button.dataset.window);
+            button.closest(".window");
 
-        if (
-            windowElement &&
-            windowElement.classList.contains("active") &&
-            windowElement.style.display === "block"
-        ) {
-
-            button.classList.add("active");
-
-        } else {
-
-            button.classList.remove("active");
-        }
-    });
-}
-
-
-// =========================================================
-// DESKTOP ICON DOUBLE CLICK
-// =========================================================
-
-desktopIcons.forEach(icon => {
-
-    icon.addEventListener("dblclick", () => {
-
-        openWindow(icon.dataset.window);
+        closeWindow(windowElement);
 
     });
+
+});
+
+
+document.querySelectorAll(".minimize-button").forEach((button) => {
+
+    button.addEventListener("click", (event) => {
+
+        event.stopPropagation();
+
+        const windowElement =
+            button.closest(".window");
+
+        minimizeWindow(windowElement);
+
+    });
+
+});
+
+
+document.querySelectorAll(".maximize-button").forEach((button) => {
+
+    button.addEventListener("click", (event) => {
+
+        event.stopPropagation();
+
+        const windowElement =
+            button.closest(".window");
+
+        toggleMaximize(windowElement);
+
+    });
+
 });
 
 
 // =========================================================
-// PROJECT FOLDER DOUBLE CLICK
+// WINDOW FOCUS
 // =========================================================
 
-fileIcons.forEach(icon => {
-
-    icon.addEventListener("dblclick", () => {
-
-        openWindow(icon.dataset.window);
-
-    });
-});
-
-
-// =========================================================
-// START MENU ITEMS
-// =========================================================
-
-document.querySelectorAll(".start-item[data-window]")
-    .forEach(item => {
-
-        item.addEventListener("click", () => {
-
-            openWindow(item.dataset.window);
-
-        });
-
-    });
-
-
-// =========================================================
-// WINDOW BUTTONS
-// =========================================================
-
-windows.forEach(windowElement => {
+windows.forEach((windowElement) => {
 
     windowElement.addEventListener("mousedown", () => {
 
-        focusWindow(windowElement);
+        activateWindow(windowElement);
 
     });
 
-
-    const closeButton =
-        windowElement.querySelector(".close-button");
-
-    const minimizeButton =
-        windowElement.querySelector(".minimize-button");
-
-    const maximizeButton =
-        windowElement.querySelector(".maximize-button");
-
-
-    if (closeButton) {
-
-        closeButton.addEventListener("click", event => {
-
-            event.stopPropagation();
-
-            closeWindow(windowElement);
-
-        });
-    }
-
-
-    if (minimizeButton) {
-
-        minimizeButton.addEventListener("click", event => {
-
-            event.stopPropagation();
-
-            minimizeWindow(windowElement);
-
-        });
-    }
-
-
-    if (maximizeButton) {
-
-        maximizeButton.addEventListener("click", event => {
-
-            event.stopPropagation();
-
-            maximizeWindow(windowElement);
-
-        });
-    }
 });
 
 
 // =========================================================
-// DRAG WINDOWS
+// WINDOW DRAGGING
 // =========================================================
 
-windows.forEach(windowElement => {
+document.querySelectorAll(".window-titlebar").forEach((titlebar) => {
 
-    const titlebar =
-        windowElement.querySelector(".window-titlebar");
+    titlebar.addEventListener("mousedown", (event) => {
 
-    if (!titlebar) {
-        return;
-    }
-
-    let dragging = false;
-
-    let offsetX = 0;
-    let offsetY = 0;
-
-
-    titlebar.addEventListener("mousedown", event => {
-
-        if (
-            event.target.closest(".window-controls") ||
-            windowElement.classList.contains("maximized")
-        ) {
+        if (event.target.closest(".window-controls")) {
             return;
         }
 
-        dragging = true;
+        const windowElement =
+            titlebar.closest(".window");
 
-        focusWindow(windowElement);
-
-        const rect =
-            windowElement.getBoundingClientRect();
-
-        offsetX = event.clientX - rect.left;
-        offsetY = event.clientY - rect.top;
-
-        event.preventDefault();
-    });
-
-
-    document.addEventListener("mousemove", event => {
-
-        if (!dragging) {
+        if (windowElement.classList.contains("maximized")) {
             return;
         }
 
-        let newLeft =
-            event.clientX - offsetX;
+        activateWindow(windowElement);
 
-        let newTop =
-            event.clientY - offsetY;
+        const startMouseX = event.clientX;
+        const startMouseY = event.clientY;
 
-
-        const maxLeft =
-            window.innerWidth - windowElement.offsetWidth;
-
-        const maxTop =
-            window.innerHeight -
-            40 -
-            windowElement.offsetHeight;
+        const startLeft = windowElement.offsetLeft;
+        const startTop = windowElement.offsetTop;
 
 
-        newLeft =
-            Math.max(0, Math.min(newLeft, maxLeft));
+        function moveWindow(moveEvent) {
 
-        newTop =
-            Math.max(0, Math.min(newTop, maxTop));
+            let newLeft =
+                startLeft +
+                moveEvent.clientX -
+                startMouseX;
+
+            let newTop =
+                startTop +
+                moveEvent.clientY -
+                startMouseY;
 
 
-        windowElement.style.left =
-            `${newLeft}px`;
+            /*
+             * Keep the title bar accessible.
+             */
 
-        windowElement.style.top =
-            `${newTop}px`;
+            newLeft = Math.max(
+                0,
+                Math.min(
+                    newLeft,
+                    window.innerWidth - 100
+                )
+            );
+
+            newTop = Math.max(
+                0,
+                Math.min(
+                    newTop,
+                    window.innerHeight - 70
+                )
+            );
+
+
+            windowElement.style.left =
+                newLeft + "px";
+
+            windowElement.style.top =
+                newTop + "px";
+        }
+
+
+        function stopMoving() {
+
+            document.removeEventListener(
+                "mousemove",
+                moveWindow
+            );
+
+            document.removeEventListener(
+                "mouseup",
+                stopMoving
+            );
+        }
+
+
+        document.addEventListener(
+            "mousemove",
+            moveWindow
+        );
+
+        document.addEventListener(
+            "mouseup",
+            stopMoving
+        );
+
     });
 
-
-    document.addEventListener("mouseup", () => {
-
-        dragging = false;
-
-    });
 });
 
 
 // =========================================================
-// START BUTTON
+// START MENU
 // =========================================================
 
-startButton.addEventListener("click", event => {
+const startButton =
+    document.getElementById("start-button");
+
+const startMenu =
+    document.getElementById("start-menu");
+
+
+function closeStartMenu() {
+
+    startMenu.classList.remove("open");
+    startButton.classList.remove("active");
+}
+
+
+startButton.addEventListener("click", (event) => {
 
     event.stopPropagation();
 
     startMenu.classList.toggle("open");
-
     startButton.classList.toggle("active");
 
 });
 
 
-// =========================================================
-// CLOSE START MENU
-// =========================================================
+startMenu.addEventListener("click", (event) => {
 
-function closeStartMenu() {
+    event.stopPropagation();
 
-    startMenu.classList.remove("open");
-
-    startButton.classList.remove("active");
-}
+});
 
 
-document.addEventListener("mousedown", event => {
+document.addEventListener("click", () => {
 
-    if (
-        !startMenu.contains(event.target) &&
-        !startButton.contains(event.target)
-    ) {
+    closeStartMenu();
 
-        closeStartMenu();
-    }
 });
 
 
@@ -497,12 +425,9 @@ document.addEventListener("mousedown", event => {
 // HELP OK BUTTON
 // =========================================================
 
-const closeHelp =
-    document.querySelector(".close-help");
+document.querySelectorAll(".close-help").forEach((button) => {
 
-if (closeHelp) {
-
-    closeHelp.addEventListener("click", () => {
+    button.addEventListener("click", () => {
 
         const helpWindow =
             document.getElementById("help-window");
@@ -510,7 +435,8 @@ if (closeHelp) {
         closeWindow(helpWindow);
 
     });
-}
+
+});
 
 
 // =========================================================
@@ -524,68 +450,351 @@ const restartNo =
     document.getElementById("restart-no");
 
 
-restartYes.addEventListener("click", () => {
+if (restartYes) {
 
-    resetDesktop();
+    restartYes.addEventListener("click", () => {
 
-});
+        /*
+         * Reset saved display settings.
+         */
 
+        localStorage.removeItem("website-theme");
+        localStorage.removeItem("explorer-view");
 
-restartNo.addEventListener("click", () => {
-
-    closeWindow(
-        document.getElementById("restart-window")
-    );
-
-});
-
-
-// =========================================================
-// RESET DESKTOP
-// =========================================================
-
-function resetDesktop() {
-
-    windows.forEach(windowElement => {
-
-        windowElement.style.display = "none";
-
-        windowElement.classList.remove(
-            "active",
-            "maximized"
-        );
-
-        windowElement.dataset.minimized = "false";
+        location.reload();
 
     });
 
-
-    taskbarPrograms.innerHTML = "";
-
-    closeStartMenu();
+}
 
 
-    /*
-       Default window after restart.
+if (restartNo) {
 
-       Currently this opens About Me.
-    */
+    restartNo.addEventListener("click", () => {
 
-    openWindow("about-window");
+        closeWindow(
+            document.getElementById("restart-window")
+        );
+
+    });
+
 }
 
 
 // =========================================================
-// DEFAULT STARTUP
+// CLOCK
 // =========================================================
 
-window.addEventListener("load", () => {
+function updateClock() {
 
-    /*
-       Change this if you want a different
-       window to appear when the website loads.
-    */
+    const clock =
+        document.getElementById("clock");
 
-    openWindow("about-window");
+    const now =
+        new Date();
+
+    clock.textContent =
+        now.toLocaleTimeString(
+            [],
+            {
+                hour: "numeric",
+                minute: "2-digit"
+            }
+        );
+}
+
+
+updateClock();
+
+setInterval(updateClock, 1000);
+
+
+// =========================================================
+// CLASSIC FILE / EDIT / VIEW / HELP MENUS
+// =========================================================
+
+function closeAllDropdownMenus() {
+
+    document
+        .querySelectorAll(".menu-group.open")
+        .forEach((menu) => {
+
+            menu.classList.remove("open");
+
+        });
+
+}
+
+
+// Open menu
+
+document.querySelectorAll(".menu-button").forEach((button) => {
+
+    button.addEventListener("click", (event) => {
+
+        event.stopPropagation();
+
+        const group =
+            button.closest(".menu-group");
+
+        const wasOpen =
+            group.classList.contains("open");
+
+        closeAllDropdownMenus();
+
+        if (!wasOpen) {
+            group.classList.add("open");
+        }
+
+    });
+
+});
+
+
+// Clicking dropdown itself should not immediately close it
+
+document.querySelectorAll(".dropdown-menu").forEach((menu) => {
+
+    menu.addEventListener("click", (event) => {
+
+        event.stopPropagation();
+
+    });
+
+});
+
+
+// Clicking somewhere else closes dropdowns
+
+document.addEventListener("click", () => {
+
+    closeAllDropdownMenus();
+
+});
+
+
+// =========================================================
+// FILE -> CLOSE
+// =========================================================
+
+document.querySelectorAll(".menu-close-window").forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+        const windowElement =
+            button.closest(".window");
+
+        closeAllDropdownMenus();
+
+        closeWindow(windowElement);
+
+    });
+
+});
+
+
+// =========================================================
+// EDIT -> LIGHT / DARK MODE
+// =========================================================
+
+function updateThemeChecks() {
+
+    const dark =
+        document.body.classList.contains("dark-mode");
+
+
+    document.querySelectorAll(".light-check").forEach((check) => {
+
+        check.textContent =
+            dark ? "" : "●";
+
+    });
+
+
+    document.querySelectorAll(".dark-check").forEach((check) => {
+
+        check.textContent =
+            dark ? "●" : "";
+
+    });
+
+}
+
+
+function setWebsiteTheme(theme) {
+
+    if (theme === "dark") {
+
+        document.body.classList.add("dark-mode");
+
+    } else {
+
+        document.body.classList.remove("dark-mode");
+
+    }
+
+
+    localStorage.setItem(
+        "website-theme",
+        theme
+    );
+
+
+    updateThemeChecks();
+
+    closeAllDropdownMenus();
+
+}
+
+
+document.querySelectorAll(".theme-light").forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+        setWebsiteTheme("light");
+
+    });
+
+});
+
+
+document.querySelectorAll(".theme-dark").forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+        setWebsiteTheme("dark");
+
+    });
+
+});
+
+
+// Restore previous theme
+
+const savedWebsiteTheme =
+    localStorage.getItem("website-theme");
+
+
+if (savedWebsiteTheme === "dark") {
+
+    document.body.classList.add("dark-mode");
+
+}
+
+
+updateThemeChecks();
+
+
+// =========================================================
+// VIEW -> LARGE / SMALL ICONS
+// =========================================================
+
+function updateViewChecks(mode) {
+
+    document.querySelectorAll(".large-check").forEach((check) => {
+
+        check.textContent =
+            mode === "large" ? "●" : "";
+
+    });
+
+
+    document.querySelectorAll(".small-check").forEach((check) => {
+
+        check.textContent =
+            mode === "small" ? "●" : "";
+
+    });
+
+}
+
+
+function setExplorerView(mode) {
+
+    document.querySelectorAll(".explorer-content").forEach((content) => {
+
+        content.classList.remove(
+            "large-icons",
+            "small-icons"
+        );
+
+
+        if (mode === "small") {
+
+            content.classList.add(
+                "small-icons"
+            );
+
+        } else {
+
+            content.classList.add(
+                "large-icons"
+            );
+
+        }
+
+    });
+
+
+    localStorage.setItem(
+        "explorer-view",
+        mode
+    );
+
+
+    updateViewChecks(mode);
+
+    closeAllDropdownMenus();
+
+}
+
+
+document.querySelectorAll(".view-large").forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+        setExplorerView("large");
+
+    });
+
+});
+
+
+document.querySelectorAll(".view-small").forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+        setExplorerView("small");
+
+    });
+
+});
+
+
+// Restore previous Explorer view
+
+const savedExplorerView =
+    localStorage.getItem("explorer-view") || "large";
+
+
+setExplorerView(savedExplorerView);
+
+
+// =========================================================
+// HELP MENU -> EXISTING HELP WINDOW
+// =========================================================
+
+document.querySelectorAll(".menu-open-help").forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+        closeAllDropdownMenus();
+
+        const helpWindow =
+            document.getElementById("help-window");
+
+        openWindow(helpWindow);
+
+    });
 
 });
