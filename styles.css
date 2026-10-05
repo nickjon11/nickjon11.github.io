@@ -1428,7 +1428,34 @@ body.dark-mode .resume-fallback {
     background: #202124;
     color: #f0f0f0;
 }
+/* =========================================================
+   EDUCATION
+========================================================= */
 
+.education-entry {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 22px 0;
+}
+
+.education-logo {
+    width: 100px;
+    max-height: 75px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.education-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    line-height: 1.4;
+}
+
+.education-info strong {
+    font-size: 15px;
+}
 /* =========================================================
    MOBILE
 ========================================================= */
